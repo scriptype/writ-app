@@ -9,8 +9,12 @@ const storage = {
 }
 
 const saveSettings = (settings) => {
-  storage.setItem('settings', settings)
+  storage.setItem('writ-settings', settings)
   return settings
+}
+
+const loadSettings = () => {
+  return storage.getItem('writ-settings')
 }
 
 const Constants = {
@@ -46,6 +50,12 @@ const DefineSettingsView = ({ el }) =>
     }, 3000)
   })
 
+const SettingsSavingView = ({ el }) =>
+  new Promise((resolve, reject) => {
+    el.innerHTML = 'saving settings'
+    setTimeout(resolve, 2000)
+  })
+
 const SettingsImportedView = ({ el }) =>
   new Promise((resolve, reject) => {
     el.innerHTML = Constants.IMPORT_SETTINGS
@@ -69,44 +79,43 @@ const MainView = ({ el, settings }) =>
     el.innerHTML = 'main view'
   })
 
-const FirstTimeFlow = () => {
-  const el = document.getElementById('app')
+const FirstTimeFlow = async ({ el }) => {
   const {
     IMPORT_SETTINGS,
     CREATE_SETTINGS_USING_FORM
   } = Constants
-  return IntroView({ el })
-    .then(() => DefineSettingsView({ el }))
-    .then(async ({ settings, theWayItsDefined }) => {
-      if (theWayItsDefined === IMPORT_SETTINGS) {
-        await SettingsImportedView({ el })
-      } else if (theWayItsDefined === CREATE_SETTINGS_USING_FORM) {
-        await SettingsCreatedView({ el })
-      } else {
-        await SettingsJustEmergedView({ el })
-      }
-      console.log('feedback given')
-      return settings
-    })
-    .then((settings) => {
-      console.log('lets save settings')
-      return Promise.resolve(saveSettings(settings))
-    })
-    .then((settings) => {
-      console.log('lets move on to main')
-      return MainView({ el, settings })
-    })
+
+  await IntroView({ el })
+
+  const {
+    settings,
+    theWayItsDefined
+  } = await DefineSettingsView({ el })
+
+  await SettingsSavingView({ el })
+  await saveSettings(settings)
+
+  if (theWayItsDefined === IMPORT_SETTINGS) {
+    await SettingsImportedView({ el })
+  } else if (theWayItsDefined === CREATE_SETTINGS_USING_FORM) {
+    await SettingsCreatedView({ el })
+  } else {
+    await SettingsJustEmergedView({ el })
+  }
+  return MainView({ el, settings })
 }
 
-const ContinuationFlow = () => {
-  const el = document.getElementById('app')
-  return MainView({ el })
+const ContinuationFlow = async ({ el, settings }) => {
+  return MainView({ el, settings })
 }
 
-const MasterFlow = () => {
-  return storage.getItem('settings')?.rootDirectory ?
-    ContinuationFlow() :
-    FirstTimeFlow()
+const MasterFlow = async ({ el }) => {
+  const settings = await loadSettings()
+  return settings?.rootDirectory ?
+    ContinuationFlow({ el, settings }) :
+    FirstTimeFlow({ el })
 }
 
-MasterFlow()
+MasterFlow({
+  el: document.getElementById('app')
+})
