@@ -2,8 +2,8 @@ const { app, BrowserWindow, Menu, ipcMain } = require('electron');
 const { join } = require('path');
 
 const debug = 1
-const windowWidth = 800
-const windowHeight = 800
+const windowWidth = 600
+const windowHeight = 600
 
 const APP_DIRECTORY = join(__dirname, 'app')
 
