@@ -11,11 +11,16 @@ import {
   MainView
 } from './views.js'
 
+const debugFirstTimeFlow = 1
+
 export const MasterFlow = async ({ el }) => {
   const [ , settings ] = await Promise.all([
     SettingsLoadingView({ el }),
     loadSettings()
   ])
+  if (debugFirstTimeFlow) {
+    return FirstTimeFlow({ el })
+  }
   return settings?.rootDirectory ?
     ContinuationFlow({ el, settings }) :
     FirstTimeFlow({ el })
