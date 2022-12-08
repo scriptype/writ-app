@@ -29,6 +29,6 @@ export const saveSettings = async (settings) => {
 
 export const loadSettings = async () => {
   const settings = storage.getItem('writ-settings')
-  await sleep(2)
+  await sleep(1)
   return settings
 }
