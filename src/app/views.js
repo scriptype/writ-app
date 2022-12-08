@@ -2,10 +2,8 @@ import { mockSettings } from './settings.js'
 import Constants from './constants.js'
 import { getRandomFrom, sleep } from './utils.js'
 
-export const IntroView = async ({ el }) => {
-  el.innerHTML = 'intro view'
-  return sleep(3)
-}
+export { default as IntroView } from './views/intro.js'
+export { default as SettingsLoadingView } from './views/settings-loading.js'
 
 export const DefineSettingsView = async ({ el }) => {
   el.innerHTML = 'define settings view'
@@ -18,11 +16,6 @@ export const DefineSettingsView = async ({ el }) => {
       Constants.SOMEHOW_SETTINGS_ARE_THERE
     ])
   }
-}
-
-export const SettingsLoadingView = async ({ el }) => {
-  el.innerHTML = 'loading settings'
-  return sleep(0)
 }
 
 export const SettingsSavingView = async ({ el }) => {
