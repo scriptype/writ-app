@@ -1,15 +1,10 @@
 import Constants from './constants.js'
 import { saveSettings, loadSettings } from './settings.js'
-import {
-  IntroView,
-  DefineSettingsView,
-  SettingsLoadingView,
-  SettingsSavingView,
-  SettingsImportedView,
-  SettingsCreatedView,
-  SettingsJustEmergedView,
-  MainView
-} from './views.js'
+import IntroView from './views/intro.js'
+import DefineSettingsView from './views/define-settings.js'
+import SettingsLoadingView from './views/settings-loading.js'
+import SettingsSavingView from './views/settings-saving.js'
+import MainView from './views/main.js'
 
 const debugFirstTimeFlow = 1
 
@@ -33,22 +28,12 @@ export const ContinuationFlow = async ({ el, settings }) => {
 export const FirstTimeFlow = async ({ el }) => {
   await IntroView({ el })
 
-  const {
-    settings,
-    theWayItsDefined
-  } = await DefineSettingsView({ el })
+  const { settings } = await DefineSettingsView({ el })
 
   await Promise.all([
     SettingsSavingView({ el }),
     saveSettings(settings)
   ])
 
-  if (theWayItsDefined === Constants.IMPORT_SETTINGS) {
-    await SettingsImportedView({ el })
-  } else if (theWayItsDefined === Constants.CREATE_SETTINGS_USING_FORM) {
-    await SettingsCreatedView({ el })
-  } else {
-    await SettingsJustEmergedView({ el })
-  }
   return MainView({ el, settings })
 }
