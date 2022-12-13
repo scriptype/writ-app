@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, ipcMain } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron');
 const { join } = require('path');
 
 const debug = 1
@@ -6,6 +6,8 @@ const windowWidth = 600
 const windowHeight = 600
 
 const APP_DIRECTORY = join(__dirname, 'app')
+
+let webWindow
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -15,6 +17,12 @@ if (require('electron-squirrel-startup')) {
 ipcMain.handle('writ:run', (event, settings) => {
   const writ = require('../../writ-cms')
   return writ(settings)
+})
+
+ipcMain.handle('nativeHelpers:showOpenDirectoryDialog', (event, options) => {
+  return dialog.showOpenDialog(webWindow, {
+    properties: ['openDirectory']
+  })
 })
 
 const createWindow = () => {
@@ -37,7 +45,9 @@ if (!debug) {
   Menu.setApplicationMenu(null)
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+  webWindow = createWindow()
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -47,6 +57,6 @@ app.on('window-all-closed', () => {
 
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
+    webWindow = createWindow();
   }
 });
