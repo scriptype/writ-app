@@ -1,0 +1,46 @@
+@keyframes outline-pulse {
+    from, to {
+        outline-offset: 4px;
+        outline-width: 2px;
+    }
+    50% {
+        outline-offset: 2px;
+        outline-width: 3px;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slide-to-bottom {
+    from {
+        transform: translateY(-10px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-to-top {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-15px);
+    }
+}

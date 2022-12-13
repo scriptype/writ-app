@@ -1,0 +1,13 @@
+.define-settings-view input {
+    display: none;
+}
+
+.define-settings-view label {
+    cursor: pointer;
+}
+
+.define-settings-view.exiting {
+    animation:
+        fade-out calc(var(--transition-duration) * 1ms) forwards,
+        slide-to-bottom calc(var(--transition-duration) * 1ms) forwards;
+}

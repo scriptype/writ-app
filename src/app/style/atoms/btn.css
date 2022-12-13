@@ -1,0 +1,26 @@
+.btn {}
+
+.cta-btn {
+    cursor: pointer;
+    background: mediumseagreen;
+    border-radius: 0.3px;
+    transition: all .3s;
+}
+
+.cta-btn:focus {
+    outline: mediumseagreen solid 1px;
+    animation: outline-pulse 1s infinite;
+}
+
+.cta-btn:hover {
+    background: #58ce8c;
+    outline-color: #58ce8c;
+}
+
+.cta-btn:active {
+    background: #24864f;
+    outline-color: #24864f;
+    outline-offset: 1px;
+    outline-width: 4px;
+    animation: none;
+}

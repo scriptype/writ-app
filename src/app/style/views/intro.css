@@ -1,0 +1,17 @@
+.intro-view {
+    width: 45vw;
+    margin-top: -20%;
+    animation:
+        fade-in calc(var(--transition-duration) * 1ms) forwards,
+        slide-to-bottom calc(var(--transition-duration) * 1ms) forwards;
+}
+
+.intro-view p:has(~ .cta-btn) {
+    margin-bottom: 50px;
+}
+
+.intro-view.exiting {
+    animation:
+        fade-out calc(var(--transition-duration) * 1ms) forwards,
+        slide-to-top calc(var(--transition-duration) * 1ms) forwards;
+}
