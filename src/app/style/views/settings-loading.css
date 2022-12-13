@@ -1,0 +1,39 @@
+.settings-loading-view {}
+
+.settings-loading-view .dummy-logo {
+    --color-1: mediumspringgreen;
+    --color-2: transparent;
+    text-indent: -9999px;
+    display: block;
+    width: 128px;
+    height: 128px;
+    border-radius: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 30%,
+        var(--color-1) 31%,
+        var(--color-1) 66%,
+        var(--color-2) 67%,
+        var(--color-2) 100%
+    );
+    animation:
+        dummy-logo-animation
+            var(--animation-duration)
+            forwards,
+        fade-out
+            calc(var(--animation-duration) / 1.7) /* duration */
+            calc(var(--animation-duration) / 1.5) /* delay */
+            forwards;
+}
+
+@keyframes dummy-logo-animation {
+    from {
+        background-size: 500% 500%;
+        background-position: 0 0;
+    }
+    to {
+        background-size: 3% 3%;
+        background-position: 0 50%;
+    }
+}

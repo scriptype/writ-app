@@ -2,5 +2,6 @@
 @import "./base.css";
 @import "./layout.css";
 @import "./atoms/btn.css";
+@import "./views/settings-loading.css";
 @import "./views/intro.css";
 @import "./views/define-settings.css";
