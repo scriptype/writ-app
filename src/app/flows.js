@@ -30,10 +30,17 @@ export const FirstTimeFlow = async ({ el }) => {
 
   const { settings } = await DefineSettingsView({ el })
 
+  const defaultSettings = await window.writ.getDefaultSettings()
+
+  const fullSettings = {
+    ...defaultSettings,
+    ...settings
+  }
+
   await Promise.all([
     SettingsSavingView({ el }),
-    saveSettings(settings)
+    saveSettings(fullSettings)
   ])
 
-  return MainView({ el, settings })
+  return MainView({ el, settings: fullSettings })
 }

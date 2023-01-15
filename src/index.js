@@ -1,9 +1,10 @@
-const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron');
-const { join } = require('path');
+const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron')
+const { join } = require('path')
+const { readFile, lstat } = require('fs/promises')
 
 const debug = 1
-const windowWidth = 600
-const windowHeight = 600
+const windowWidth = debug ? 1600 : 600
+const windowHeight = debug ? 828 : 600
 
 const APP_DIRECTORY = join(__dirname, 'app')
 
@@ -14,9 +15,16 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-ipcMain.handle('writ:run', (event, settings) => {
+ipcMain.handle('writ:run', (event, rootDirectory) => {
   const writ = require('../../writ-cms')
-  return writ(settings)
+  writ.start({
+    rootDirectory,
+    debug
+  })
+})
+
+ipcMain.handle('writ:getDefaultSettings', async (event, rootDirectory) => {
+  return require('../../writ-cms').getDefaultSettings()
 })
 
 ipcMain.handle('nativeHelpers:showOpenDirectoryDialog', (event, options) => {

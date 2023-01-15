@@ -1,9 +1,16 @@
 const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld('writ', {
-  run: (settings) => ipcRenderer.invoke('writ:run', settings)
+  run: (options) => {
+    return ipcRenderer.invoke('writ:run', options)
+  },
+  getDefaultSettings: (rootDirectory) => {
+    return ipcRenderer.invoke('writ:getDefaultSettings', rootDirectory)
+  }
 })
 
 contextBridge.exposeInMainWorld('nativeHelpers', {
-  showOpenDirectoryDialog: () => ipcRenderer.invoke('nativeHelpers:showOpenDirectoryDialog')
+  showOpenDirectoryDialog: () => {
+    return ipcRenderer.invoke('nativeHelpers:showOpenDirectoryDialog')
+  }
 })
