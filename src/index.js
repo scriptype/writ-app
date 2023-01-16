@@ -24,7 +24,7 @@ ipcMain.handle('writ:run', (event, rootDirectory) => {
 })
 
 ipcMain.handle('writ:getDefaultSettings', async (event, rootDirectory) => {
-  return require('../../writ-cms').getDefaultSettings()
+  return require('../../writ-cms').getDefaultSettings(rootDirectory)
 })
 
 ipcMain.handle('nativeHelpers:showOpenDirectoryDialog', (event, options) => {

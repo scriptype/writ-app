@@ -30,7 +30,7 @@ export const FirstTimeFlow = async ({ el }) => {
 
   const { settings } = await DefineSettingsView({ el })
 
-  const defaultSettings = await window.writ.getDefaultSettings()
+  const defaultSettings = await window.writ.getDefaultSettings(settings.rootDirectory)
 
   const fullSettings = {
     ...defaultSettings,
