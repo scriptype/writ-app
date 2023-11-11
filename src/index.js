@@ -2,7 +2,7 @@ const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron')
 const { join } = require('path')
 const { readFile, lstat } = require('fs/promises')
 
-const debug = 1
+const debug = 0
 const windowWidth = debug ? 1600 : 600
 const windowHeight = debug ? 828 : 600
 
@@ -16,7 +16,7 @@ if (require('electron-squirrel-startup')) {
 }
 
 ipcMain.handle('writ:run', (event, rootDirectory) => {
-  const writ = require('../../writ-cms')
+  const writ = require('writ-cms')
   writ.start({
     rootDirectory,
     debug
@@ -24,7 +24,7 @@ ipcMain.handle('writ:run', (event, rootDirectory) => {
 })
 
 ipcMain.handle('writ:getDefaultSettings', async (event, rootDirectory) => {
-  return require('../../writ-cms').getDefaultSettings(rootDirectory)
+  return require('writ-cms').getDefaultSettings(rootDirectory)
 })
 
 ipcMain.handle('nativeHelpers:showOpenDirectoryDialog', (event, options) => {
@@ -49,7 +49,7 @@ const createWindow = () => {
   return win
 };
 
-if (!debug) {
+if (false && !debug) {
   Menu.setApplicationMenu(null)
 }
 

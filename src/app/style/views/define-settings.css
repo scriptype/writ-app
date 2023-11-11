@@ -1,9 +1,9 @@
-.define-settings-view input {
-    display: none;
+.define-settings-view label[for="folder-input"] {
+    cursor: pointer;
 }
 
-.define-settings-view label {
-    cursor: pointer;
+.define-settings-view #folder-input {
+    display: none;
 }
 
 .define-settings-view.exiting {

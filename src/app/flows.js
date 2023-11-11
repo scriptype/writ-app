@@ -6,7 +6,7 @@ import SettingsLoadingView from './views/settings-loading.js'
 import SettingsSavingView from './views/settings-saving.js'
 import MainView from './views/main.js'
 
-const debugFirstTimeFlow = 1
+const debugFirstTimeFlow = 0
 
 export const MasterFlow = async ({ el }) => {
   const [ , settings ] = await Promise.all([

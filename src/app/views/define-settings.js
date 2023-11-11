@@ -20,7 +20,7 @@ const DefineSettingsView = async ({ el }) => {
   const listenToFolderSelect = (onSelect) => {
     document.querySelector('#folder-input').addEventListener('click', async (e) => {
       const { cancelled, filePaths } = await window.nativeHelpers.showOpenDirectoryDialog()
-      if (cancelled) {
+      if (cancelled || !filePaths || !filePaths[0]) {
         return
       }
       document.querySelector('#complete-step-form').classList.add('exiting')

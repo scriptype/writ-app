@@ -18,7 +18,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "writ-cms": "github:scriptype/writ-cms"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.4",
