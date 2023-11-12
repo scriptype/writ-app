@@ -10,7 +10,7 @@ jobs:
       matrix:
         node: [16, 18, 20]
         arch: [x64]
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [macos-latest, windows-latest]
 
     steps:
       - name: Check out Git repository
