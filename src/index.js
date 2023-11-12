@@ -1,11 +1,7 @@
 const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron')
-
-if (require('electron-squirrel-startup')) {
-  app.quit();
-}
-
 const { join } = require('path')
 const { readFile, lstat } = require('fs/promises')
+const os = require('os')
 
 const debug = 0
 const windowWidth = debug ? 1600 : 600
@@ -16,7 +12,7 @@ const APP_DIRECTORY = join(__dirname, 'app')
 let webWindow
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require('electron-squirrel-startup')) {
+if (os.platform() === 'win32' && require('electron-squirrel-startup')) {
   app.quit();
 }
 
