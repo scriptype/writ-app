@@ -1,7 +1,7 @@
 module.exports = {
   packagerConfig: {
     ignore: [
-      "node_modules"
+      'node_modules'
     ]
   },
   rebuildConfig: {},
@@ -32,4 +32,15 @@ module.exports = {
       config: {},
     }
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'scriptype',
+          name: 'writ-app'
+        }
+      }
+    }
+  ]
 };
