@@ -1,10 +1,23 @@
 module.exports = {
-  packagerConfig: {},
+  packagerConfig: {
+    ignore: [
+      "node_modules"
+    ]
+  },
   rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
       config: {},
+    },
+    {
+      name: '@electron-forge/maker-squirrel',
+      platforms: ['win32'],
+      config: {
+        authors: 'musti',
+        iconUrl: 'https://enes.in/assets/favicon.png',
+        name: 'musti',
+      }
     },
     {
       name: '@electron-forge/maker-zip',
@@ -17,6 +30,6 @@ module.exports = {
     {
       name: '@electron-forge/maker-rpm',
       config: {},
-    },
+    }
   ],
 };

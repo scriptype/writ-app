@@ -1,4 +1,9 @@
 const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron')
+
+if (require('electron-squirrel-startup')) {
+  app.quit();
+}
+
 const { join } = require('path')
 const { readFile, lstat } = require('fs/promises')
 
