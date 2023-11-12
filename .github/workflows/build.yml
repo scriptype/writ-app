@@ -8,22 +8,17 @@ jobs:
 
     strategy:
       matrix:
-        node: [16, 18, 20]
-        arch: [x64]
+        node: [20]
         os: [macos-latest, windows-latest]
 
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
-      - name: Use Node.js
-        uses: implausible/setup-node@feature/expose-architecture-override
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-          check-latest: true
-          node-arch: ${{ matrix.arch }}
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
