@@ -8,7 +8,6 @@ jobs:
 
     strategy:
       matrix:
-        node: [20]
         os: [macos-latest, windows-latest]
 
     steps:
@@ -18,7 +17,7 @@ jobs:
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 20
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
