@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         node: [16, 18, 20]
-        arch: [x86, x64]
+        arch: [x64]
         os: [macos-latest, ubuntu-latest, windows-latest]
 
     steps:
