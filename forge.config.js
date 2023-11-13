@@ -1,5 +1,6 @@
 module.exports = {
   packagerConfig: {
+    asar: true,
     ignore: [
       'node_modules'
     ]
