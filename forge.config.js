@@ -16,7 +16,7 @@ module.exports = {
       config: {
         authors: 'musti',
         iconUrl: 'https://enes.in/assets/favicon.png',
-        name: 'musti',
+        name: 'writ-app',
       }
     },
     {
