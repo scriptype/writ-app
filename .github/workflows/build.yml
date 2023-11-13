@@ -11,7 +11,7 @@ jobs:
         os: [macos-latest, linux-latest, windows-latest]
         node: [18, 19, 20]
 
-    name: Node ${{ matrix.node }} build
+    name: Node ${{ matrix.node }} build on ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v3
