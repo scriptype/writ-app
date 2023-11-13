@@ -14,11 +14,7 @@ module.exports = {
     {
       name: '@electron-forge/maker-squirrel',
       platforms: ['win32'],
-      config: {
-        authors: 'musti',
-        iconUrl: 'https://enes.in/assets/favicon.png',
-        name: 'writ-app',
-      }
+      config: {}
     },
     {
       name: '@electron-forge/maker-zip',
