@@ -1,9 +1,7 @@
 module.exports = {
   packagerConfig: {
     asar: true,
-    ignore: [
-      'node_modules'
-    ]
+    ignore: []
   },
   rebuildConfig: {},
   makers: [
