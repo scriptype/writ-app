@@ -17,6 +17,9 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node }}
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
     - name: install dependencies
       run: npm ci
     - name: publish

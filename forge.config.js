@@ -1,9 +1,6 @@
 module.exports = {
   packagerConfig: {
-    asar: true,
-    ignore: [
-      'nodegit'
-    ]
+    asar: true
   },
   rebuildConfig: {},
   makers: [
