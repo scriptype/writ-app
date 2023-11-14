@@ -2,6 +2,8 @@ const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron')
 const { join } = require('path')
 const { readFile, lstat } = require('fs/promises')
 const os = require('os')
+const electronSquirrelStartup = require('electron-squirrel-startup')
+const writ = require('writ-cms')
 
 const debug = 0
 const windowWidth = debug ? 1600 : 600
@@ -12,12 +14,11 @@ const APP_DIRECTORY = join(__dirname, 'app')
 let webWindow
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (os.platform() === 'win32' && require('electron-squirrel-startup')) {
+if (os.platform() === 'win32' && electronSquirrelStartup) {
   app.quit();
 }
 
 ipcMain.handle('writ:run', (event, rootDirectory) => {
-  const writ = require('writ-cms')
   writ.start({
     rootDirectory,
     debug
@@ -25,7 +26,7 @@ ipcMain.handle('writ:run', (event, rootDirectory) => {
 })
 
 ipcMain.handle('writ:getDefaultSettings', async (event, rootDirectory) => {
-  return require('writ-cms').getDefaultSettings(rootDirectory)
+  return writ.getDefaultSettings(rootDirectory)
 })
 
 ipcMain.handle('nativeHelpers:showOpenDirectoryDialog', (event, options) => {
